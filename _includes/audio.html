@@ -1,0 +1,21 @@
+{%- comment -%}
+  Background music source:
+   • posts with a `track:` -> that track
+   • homepage & non-post pages -> site ambient
+   • posts WITHOUT a track (e.g. video essays) -> no music at all
+{%- endcomment -%}
+{%- assign play_src = "" -%}
+{%- if page.track -%}
+  {%- assign play_src = '/assets/audio/tracks/' | append: page.track | relative_url -%}
+{%- elsif page.layout != "post" -%}
+  {%- assign play_src = '/assets/audio/ambient.mp3' | relative_url -%}
+{%- endif -%}
+{%- if play_src != "" -%}
+<button class="audio-btn" id="audioBtn" aria-label="Mute background music" title="Mute the music">
+  <span class="bars"><span></span><span></span><span></span><span></span></span>
+  <span class="tip">Mute the music</span>
+</button>
+<audio id="bgAudio" loop preload="auto">
+  <source src="{{ play_src }}" type="audio/mpeg">
+</audio>
+{%- endif -%}

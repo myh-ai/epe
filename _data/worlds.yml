@@ -1,0 +1,46 @@
+# ─────────────────────────────────────────────────────────────
+#  The Worlds (Rooms) of Escaping Planet Earth — six.
+#  Each room gathers several finer Blogger labels (`tags`).
+#  `tags` values must match the slugs used in posts' `worlds:`.
+# ─────────────────────────────────────────────────────────────
+
+- slug:  ai-human-soul
+  title: AI & the Human Soul
+  tags:  [ai-human-soul]
+  blurb: >-
+    Synthetic pain, statistical depression, and what a model can perform
+    but never feel.
+
+- slug:  memory-rooms
+  title: Memory Rooms
+  tags:  [memory, nostalgia, cultural-memory]
+  blurb: >-
+    Childhood houses, lost forums, old songs, and the fragile architecture
+    of remembering.
+
+- slug:  cinema-after-midnight
+  title: Cinema After Midnight
+  tags:  [cinema, music]
+  blurb: >-
+    Dark theaters, swords of light, and the films and songs that ambush us
+    long after they end.
+
+- slug:  love-loss-return
+  title: Love, Loss & Return
+  tags:  [love-and-loss]
+  blurb: >-
+    The bond, the breaking of it, and the long way back to oneself.
+
+- slug:  selfhood-becoming
+  title: Selfhood & Becoming
+  tags:  [self-and-becoming, self-reflections, writing-imagination]
+  blurb: >-
+    Identity as a question rather than an answer, and the compulsion to
+    invent worlds when the given one is too small.
+
+- slug:  power-work-resistance
+  title: Power, Work & Resistance
+  tags:  [power-resistance, learning-work]
+  blurb: >-
+    Stones against tanks, numbers against hunger, dignity against empire,
+    and the labor of remaining human.

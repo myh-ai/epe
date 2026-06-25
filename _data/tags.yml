@@ -1,0 +1,14 @@
+# Display names for the finer sub-tags shown on each post.
+# slug (used in a post's `worlds:`) -> human-readable label.
+ai-human-soul:      AI & Human Soul
+self-reflections:   Self-Reflections
+self-and-becoming:  Self & Becoming
+writing-imagination: Writing & Imagination
+love-and-loss:      Love & Loss
+memory:             Memory
+nostalgia:          Nostalgia
+cinema:             Cinema
+music:              Music
+cultural-memory:    Cultural Memory
+learning-work:      Learning & Work
+power-resistance:   Power & Resistance

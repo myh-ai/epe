@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<div class="page-wrap">
+  <div class="page-head reveal">
+    {%- if page.kicker %}<div class="kicker">{{ page.kicker }}</div>{% endif -%}
+    <h1>{{ page.title }}</h1>
+  </div>
+  {{ content }}
+</div>

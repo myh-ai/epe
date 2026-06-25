@@ -1,0 +1,17 @@
+{%- assign post = include.post -%}
+{%- assign base = post.url | replace: 'index.html','' -%}
+{%- assign gi = include.index | modulo: 6 | plus: 1 -%}
+<a href="{{ post.url | relative_url }}" class="card reveal">
+  {%- if post.cover -%}
+    <div class="thumb has-cover" style="background-image:url('{{ base | append: post.cover | relative_url }}')"></div>
+  {%- else -%}
+    <div class="thumb g{{ gi }}"></div>
+  {%- endif -%}
+  <div class="c-body">
+    <h3>{{ post.title }}</h3>
+    {%- if post.subtitle %}<p class="sub">{{ post.subtitle }}</p>{%- endif -%}
+    <div class="date">{{ post.date | date: '%B %d, %Y' }}</div>
+    {%- if post.excerpt %}<p>{{ post.excerpt }}</p>{%- endif -%}
+    <span class="readmore">Read more →</span>
+  </div>
+</a>

@@ -1,0 +1,62 @@
+# ─────────────────────────────────────────────────────────────
+#  Escaping Planet Earth — site configuration
+#  (If you ever rename the GitHub repo, change `baseurl` to match.)
+# ─────────────────────────────────────────────────────────────
+
+title:       Escaping Planet Earth
+tagline:     Essays on machines, memory, cinema, and the human soul
+author:      Moustafa Yehia Hassan
+description: >-
+  Literary neo-noir essays by Moustafa Yehia Hassan on AI, memory, cinema,
+  love, loss, and the strange machinery of the human soul.
+
+# ── Deployment (GitHub Pages PROJECT site) ──────────────────────
+# Lives at https://myh-ai.github.io/epe  → repo must be named "epe" (lowercase).
+url:     "https://myh-ai.github.io"
+baseurl: "/epe"
+
+# ── The three doors this blog links out to ──────────────────────
+academic_url: "https://myh-ai.github.io/"
+arabic_url:   "https://escapingplanetearth.blogspot.com/"
+
+# ── Build ───────────────────────────────────────────────────────
+markdown:  kramdown
+permalink: pretty
+timezone:  Asia/Qatar
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Apply the post layout automatically to anything inside /posts/
+defaults:
+  - scope:
+      path: "posts"
+    values:
+      layout: post
+
+# Files Jekyll should NOT publish
+exclude:
+  - HANDOVER.md
+  - prototype-home.html
+  - prototype-post.html
+  - "prototype-home (2).html"
+  - "prototype-post (1).html"
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .gitignore
+
+# ── Comments (Giscus, via GitHub Discussions) ───────────────────────
+# To turn on: (1) make the repo public, (2) enable Discussions in repo
+# Settings, (3) install the giscus app (github.com/apps/giscus) on the
+# repo, (4) visit giscus.app, enter myh-ai/epe, copy the repo_id +
+# category_id it generates, paste below, then set provider: "giscus".
+comments:
+  provider: ""        # set to "giscus" once the IDs below are filled in
+  giscus:
+    repo: "myh-ai/epe"
+    repo_id: "PASTE_REPO_ID_FROM_GISCUS"
+    category: "Announcements"
+    category_id: "PASTE_CATEGORY_ID_FROM_GISCUS"

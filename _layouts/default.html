@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+</head>
+<body class="{{ page.body_class }}">
+<div class="reading-progress" id="readingProgress"></div>
+<canvas id="stars"></canvas>
+
+{% include header.html %}
+
+{{ content }}
+
+{% include footer.html %}
+{% include audio.html %}
+
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

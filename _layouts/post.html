@@ -1,0 +1,114 @@
+---
+layout: default
+---
+{%- assign cbase = page.url | replace: 'index.html','' -%}
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign rt = words | divided_by: 200 -%}
+{%- if rt < 1 %}{% assign rt = 1 %}{% endif -%}
+{%- if page.read_time %}{% assign rt = page.read_time %}{% endif -%}
+
+{%- comment -%} ordered list of all essays, oldest → newest, for prev/next {%- endcomment -%}
+{%- assign chrono = site.pages | where_exp: "p", "p.layout == 'post'" | sort: "date" -%}
+{%- assign csize = chrono | size -%}
+{%- assign idx = 0 -%}
+{%- for p in chrono -%}{%- if p.url == page.url -%}{%- assign idx = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+{%- assign previ = idx | minus: 1 -%}
+{%- assign nexti = idx | plus: 1 -%}
+
+<div class="article-wrap">
+  <div class="post-head">
+    {%- if page.category %}<span class="tag">{{ page.category }}</span>{% endif -%}
+    <h1>{{ page.title }}</h1>
+    {%- if page.subtitle %}<p class="sub">{{ page.subtitle }}</p>{% endif -%}
+    <div class="meta">{{ page.date | date: '%B %d, %Y' }} <span class="sep">·</span> <span class="rt">{{ rt }} min read</span></div>
+    {%- if page.mood %}<div class="mood">{{ page.mood }}</div>{% endif -%}
+    {%- if page.worlds %}
+    <div class="subtags">
+      {%- for t in page.worlds -%}
+        {%- assign tname = site.data.tags[t] -%}
+        {%- assign room = "" -%}
+        {%- for w in site.data.worlds -%}{%- if w.tags contains t -%}{%- assign room = w.slug -%}{%- break -%}{%- endif -%}{%- endfor -%}
+        <a href="{{ '/worlds/' | relative_url }}#{{ room }}">{{ tname | default: t }}</a>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+
+  {%- unless page.no_cover -%}
+    {%- if page.cover -%}
+      <div class="cover has-cover" style="background-image:url('{{ cbase | append: page.cover | relative_url }}')"></div>
+    {%- else -%}
+      <div class="cover g3"><div class="gloss" style="position:absolute;inset:0;background:radial-gradient(circle at 72% 28%, rgba(224,151,76,.14), transparent 46%)"></div></div>
+    {%- endif -%}
+  {%- endunless -%}
+
+  <article class="article">
+    {{ content }}
+  </article>
+
+  <div class="end-room reveal">
+    <span>The room closes here.</span>
+  </div>
+
+  {%- if csize > 1 -%}
+  <nav class="pn-nav reveal">
+    {%- if idx > 0 -%}
+      {%- assign prevp = chrono[previ] -%}
+      <a class="prev" href="{{ prevp.url | relative_url }}"><div class="pn-k">← Previous essay</div><div class="pn-t">{{ prevp.title }}</div></a>
+    {%- else -%}
+      <span class="empty"></span>
+    {%- endif -%}
+    {%- if nexti < csize -%}
+      {%- assign nextp = chrono[nexti] -%}
+      <a class="next" href="{{ nextp.url | relative_url }}"><div class="pn-k">Next essay →</div><div class="pn-t">{{ nextp.title }}</div></a>
+    {%- else -%}
+      <span class="empty"></span>
+    {%- endif -%}
+  </nav>
+  {%- endif -%}
+
+  <nav class="links3 reveal">
+    <a href="{{ '/archive/' | relative_url }}">
+      <div class="k">Back to</div>
+      <div class="v">All Essays →</div>
+    </a>
+    <a href="{{ site.academic_url }}" target="_blank" rel="noopener">
+      <div class="k">The author</div>
+      <div class="v">Academic Site ↗</div>
+    </a>
+    <a href="{{ site.arabic_url }}" target="_blank" rel="noopener">
+      <div class="k">Also available</div>
+      <div class="v ar">النسخة العربية ↗</div>
+    </a>
+  </nav>
+</div>
+
+{%- comment -%} More from this world — posts sharing a sub-tag {%- endcomment -%}
+{%- assign pool = site.pages | where_exp: "p", "p.layout == 'post'" | sort: "date" | reverse -%}
+{%- assign relcount = 0 -%}
+{%- for p in pool -%}
+  {%- if p.url != page.url -%}
+    {%- for t in page.worlds -%}{%- if p.worlds contains t -%}{%- assign relcount = relcount | plus: 1 -%}{%- break -%}{%- endif -%}{%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if relcount > 0 -%}
+<section class="more-world reveal">
+  <div class="sec-head"><span class="lbl">More from this world</span><span class="line"></span></div>
+  <div class="grid">
+    {%- assign shown = 0 -%}
+    {%- for p in pool -%}
+      {%- if p.url != page.url and shown < 2 -%}
+        {%- assign hit = false -%}
+        {%- for t in page.worlds -%}{%- if p.worlds contains t -%}{%- assign hit = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
+        {%- if hit -%}{% include card.html post=p index=shown %}{%- assign shown = shown | plus: 1 -%}{%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+
+{% include comments.html %}
+
+<button class="focus-btn" id="focusBtn" aria-label="Toggle focus mode">
+  <span class="dot"></span><span class="f-label">Focus</span>
+</button>

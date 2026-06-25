@@ -1,0 +1,15 @@
+{%- assign p = page.url -%}
+<header class="top">
+  <a href="{{ '/' | relative_url }}" class="brand">Escaping Planet <span>Earth</span></a>
+  <nav>
+    <a href="{{ '/#latest' | relative_url }}" class="navlink">Essays</a>
+    <a href="{{ '/worlds/' | relative_url }}" class="navlink nav-hide{% if p contains '/worlds' %} is-current{% endif %}">Worlds</a>
+    <a href="{{ '/about/' | relative_url }}" class="navlink{% if p contains '/about' %} is-current{% endif %}">About</a>
+    <a href="{{ '/archive/' | relative_url }}" class="navlink nav-hide{% if p contains '/archive' %} is-current{% endif %}">Archive</a>
+    <a href="{{ site.academic_url }}" class="navlink nav-hide" target="_blank" rel="noopener">Academic ↗</a>
+    <a href="{{ site.arabic_url }}" class="navlink nav-hide ar" target="_blank" rel="noopener">العربية ↗</a>
+    <a href="{{ '/archive/' | relative_url }}" class="search" aria-label="Search essays">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    </a>
+  </nav>
+</header>
