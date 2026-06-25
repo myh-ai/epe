@@ -493,3 +493,12 @@ body.about-page .page-wrap > p{
   color:#ECE6DA; margin-bottom:28px;
 }
 body.about-page .page-wrap > p:first-of-type{ margin-top:6px; }
+
+.article > p,
+.article ul, .article ol,
+.prose p,
+body.about-page .page-wrap > p{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
